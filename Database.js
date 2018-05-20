@@ -32,7 +32,7 @@ Response.belongsTo(User);
 
 Saloon.hasOne(User);
 
-db.sync();
+//db.sync();
 //db.drop();
 
 
