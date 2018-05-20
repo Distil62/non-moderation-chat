@@ -1,0 +1,24 @@
+html(lang="en")
+    include includes/head.pug
+    body.grey.lighten-4
+        main
+            include includes/nav.pug
+            div.container
+                h2 Salons :
+                hr            
+                form.card(action="/api/post/create/saloon" method="POST" style="padding : 24px")
+                    h5 Création de salon
+                    input#title(name="title" type="text" placeholder="Nom du salon" required)
+                    textarea.materialize-textarea#firstContent(name="firstContent", cols="30", rows="10", placeholder="Message")
+                    input.btn.light-blue(type="submit", value="Créer", onClick="newSaloon();")
+                ul#saloonList.collection
+                    each saloon in saloons
+                        li.collection-item
+                            a(href="/saloon/" + saloon.id)
+                                div.row
+                                    div.col
+                                        p.black-text=saloon.title
+                                    div.col.right
+                                        p Réponses : 
+                                            span=saloon.numberOfResponse
+    include includes/footer.pug

@@ -1,0 +1,22 @@
+html(lang="en")
+    include includes/head.pug
+    body
+        main
+            include includes/nav.pug
+            div.container.center-align
+                div.row
+                    div.col.s12
+                        div.card(style="margin:24px;padding : 24px 0 24px 0;")
+                            h3.center Inscription
+                                if message
+                                    p.center.red-text=message
+                            div.container(style="padding : 24px 0 24px 0;")
+                                form(action="/api/post/create/user", method="POST" )
+                                    input#username(name="username", type="text", placeholder="Nom de compte",style="margin-top:16px;" required)
+                                    input#password(name="password", type="password", placeholder="Mot de passe",style="margin-top:16px;" required)
+                                    input.btn.light-blue(type="submit", value="Connexion", style="margin: 24px;")
+                                    p.center
+                                        i Déjà un compte ?
+                                    p.center
+                                        a(href="/login") Connexion
+    include includes/footer.pug

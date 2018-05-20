@@ -1,0 +1,20 @@
+html(lang="en")
+    include includes/head.pug
+    body
+        main
+            include includes/nav.pug
+            div.container.center-align
+                div.row
+                    div.col.s12
+                        h1=user.username
+                        p
+                            img#iconProfile.responsive-img(src=user.icon)
+                        p
+                            if message
+                                i.center.red-text Impossible de mettre à jours : image introuvable.
+                        form(action="/api/post/updateIconUser", method="post")
+                            input#icon(type="text", name="icon" value=user.icon, placeholder="Adresse de l'image", onChange="changePP();")
+                            input.btn.light-blue(type="submit", value="Mettre à jours")
+                        br
+                        button.btn.red.center-align(style="margin-top : 24px;")
+                            a.white-text(href="/logout") Deconnexion

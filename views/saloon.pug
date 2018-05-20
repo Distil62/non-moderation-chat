@@ -1,0 +1,39 @@
+html(lang="en")
+    include includes/head.pug
+    body.grey.lighten-4
+        main
+            include includes/nav.pug
+            div.container
+                h4=saloon.title
+                div.card
+                    div.row.valign-wrapper(style="padding : 8px;")
+                        div.col
+                            img.circle.responsive-img(width="48px" height="48px" src=author.icon)
+                        div.col
+                            span(style="font-size : 24px;")=author.username
+                    hr
+                    div(style="padding : 18px; text-align:justify;")
+                        span=saloon.firstContent
+                div.card(style="padding : 8px;margin-bottom : 64px;")
+                    form(action="/api/post/create/response/"+saloon.id, method="post")
+                        input.materialize-textarea#content(name="content", type="text" placeholder="Ecrivez votre réponse")
+                        input.btn.light-blue#addResponse(type="submit", value="Répondre", onClick="reloadAll();")
+                hr
+                div#respList
+                    each response in responses
+                        div.card
+                            div.row.valign-wrapper(style="padding : 8px; margin : 0px;")
+                                div.col
+                                    if response.author != null
+                                        img.circle.responsive-img(width="48px" height="48px" src=response.author.icon)
+                                    else
+                                        img.circle.responsive-img(width="48px" height="48px" src="https://d2ln1xbi067hum.cloudfront.net/assets/default_user-abdf6434cda029ecd32423baac4ec238.png")
+                                div.col
+                                    if response.author != null
+                                        span(style="font-size : 24px;")=response.author.username
+                                    else
+                                        span(style="font-size : 24px;")="Inconnu"
+                            hr
+                            div(style="padding : 18px; text-align:justify;")
+                                span=response.content
+    include includes/footer.pug
